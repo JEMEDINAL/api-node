@@ -1,4 +1,4 @@
-const { default: mongoose } = require("mongoose");
+
 const conexion = require("../config/connection")
 const clientSchema = new conexion.Schema({
     nombre: {
@@ -11,10 +11,7 @@ const clientSchema = new conexion.Schema({
     },
     telefono: {
         type: String,
-        required: true,
-        trim: true,
-        maxLength: [14, 'El telefono es muy extenso'],
-        minLength: [9,"El telefono es muy corto"],
+        required: true  
     },
     direccion: {
         type: String,

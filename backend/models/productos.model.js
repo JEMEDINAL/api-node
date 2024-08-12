@@ -1,6 +1,7 @@
-const conexion = require('../config/connection')
 
-const productoSchema = new conexion.Schema({
+const conexion = require("../config/connection")
+
+const schemaPedidos =  new conexion.Schema({
     referencia: { 
         type: String,
         required: [true, 'La referencia es obligatoria']
@@ -33,6 +34,6 @@ const productoSchema = new conexion.Schema({
     },
 });
 
-const productoModel = conexion.model('productos', productoSchema);
+const pedidosModel = conexion.model('pedidos', schemaPedidos);
 
-module.exports = productoModel;
+module.exports = pedidosModel;

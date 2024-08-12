@@ -1,5 +1,5 @@
 const conexion = require('../config/connection')
-const schemaPedidos = new mongoose.Schema({
+const schemaPedidos = new conexion.Schema({
         cliente: { 
             type: conexion.SchemaTypes.ObjectId
         },
@@ -26,5 +26,5 @@ const schemaPedidos = new mongoose.Schema({
     
 });
 
-const pedidos = mongoose.model("pedidos", schemaPedidos);
+const pedidos = conexion.model("pedidos", schemaPedidos);
 module.exports = pedidos;
