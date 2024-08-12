@@ -1,3 +1,4 @@
+const { default: mongoose } = require("mongoose");
 const conexion = require("../config/connection")
 const clientSchema = new conexion.Schema({
     nombre: {
@@ -26,9 +27,10 @@ const clientSchema = new conexion.Schema({
         default: true
     },
     usuario:{
-        type:conexion.SchemaTypes.ObjectId
+        type:conexion.SchemaTypes.ObjectId,
+        ref:"User"
     }
-});
+},{versionKey:false});
 
 const clientModel = conexion.model("clientes", clientSchema)
 module.exports = clientModel;

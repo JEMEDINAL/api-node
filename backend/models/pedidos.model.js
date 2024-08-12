@@ -1,7 +1,7 @@
-const mongoose = require('../config/connection')
+const conexion = require('../config/connection')
 const schemaPedidos = new mongoose.Schema({
         cliente: { 
-            type: mongoose.SchemaTypes.ObjectId
+            type: conexion.SchemaTypes.ObjectId
         },
         carrito: {
             any:[]
@@ -26,5 +26,5 @@ const schemaPedidos = new mongoose.Schema({
     
 });
 
-const pedidos = mongoose.model("orders", schemaPedidos);
+const pedidos = mongoose.model("pedidos", schemaPedidos);
 module.exports = pedidos;

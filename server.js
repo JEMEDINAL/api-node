@@ -46,6 +46,7 @@ app.post("/productos", async (req, res) => {
     }
 
     const insercion = await productos.create(nuevoProducto)
+    
     if (insercion) {
         res.status(200).json({ "mensaje": "registro realizado" })
     } else {
@@ -94,35 +95,13 @@ app.get("/clientes/:id", async (req, res) => {
     res.status(200).json(consulta)
 })
 
-app.post("/clientes", async (req, res) => {
-    const nuevoClientes = {
-        referencia: req.body.referencia,
-        nombre: req.body.nombre,
-        descripcion: req.body.descripcion,
-        precio: req.body.precio,
-        stock: req.body.stock,
-        imagen: req.body.imagen,
-        habilitado: req.body.habilitado
-    }
 
-    const insercion = await clientes.create(nuevoClientes)
-    if (insercion) {
-        res.status(200).json({ "mensaje": "registro realizado" })
-    } else {
-        res.status(404).json({ "mensaje": "no se realizo" })
-
-    }
-})
 
 app.put("/:id", async (req, res) => {
     const productEditar = {
-        referencia: req.body.referencia,
-        nombre: req.body.nombreProducto,
-        descripcion: req.body.descripcion,
-        precio: req.body.precio,
-        stock: req.body.stock,
-        Imagen: req.body.imagen,
-        habilitado: req.body.habilitado
+        nombre: req.body.nombre,
+        telefono: req.body.nombre,
+        direccion: req.body.direccion
     }
     let actualizar = await clientes.findOneAndUpdate({ _id: req.params.id }, productEditar)
     if (actualizar) {
@@ -152,6 +131,67 @@ app.get('/enviarCorreo', async (req, res) => {
     );
 })
 
+// registro de usuario - cliente
+
+app.post("/registroCompleto",async(req,res)=>{
+    let datosUsuario = {
+        correo: req.body.correo,
+        pass: req.body.pass
+    }
+    const usu = await usuario.create(datosUsuario)
+    let datoscliente = {
+        nombre: req.body.nombre,
+        telefono: req.body.telefono,
+        direccion: req.body.direccion,
+        usuario:usu._id
+    }
+    const cli = await clientes.create(datoscliente)
+    if (usu) {
+        res.status(200).json({ "mensaje": "registro realizado" })
+    } else {
+        res.status(404).json({ "mensaje": "no se realizo" })
+
+    }
+})
+
+// usuario 
+app.post('/nuevoUsuario',async (req,res)=>{
+    let datosUsuario = {
+        correo: req.body.correo,
+        pass: req.body.pass
+    }
+    const nuevoUsu = await usuario.create(datosUsuario)
+    if (nuevoUsu) {
+        res.status(200).json({ "mensaje": "registro realizado" })
+    } else {
+        res.status(404).json({ "mensaje": "no se realizo" })
+
+    }
+})
+
+app.get('/usuarios',async(req,res)=>{
+    const consulta = await usuario.find({})
+    res.status(200).json(consulta)
+})
+app.get('/usuarios/:id',async(req,res)=>{
+    const consulta = await usuario.findOne({_id:req.params.id})
+    res.status(200).json(consulta)
+})
+
+app.put("usuarios/:id",async(req,res)=>{
+    let dataUser = {
+        correo:req.body.correo,
+        pass:req.body.pass
+    }
+
+    const actualizado = await usuario.findByIdAndUpdate({_id:req.params.id},dataUser)
+    if (nuevoUsu) {
+        res.status(200).json({ "mensaje": "registro realizado" })
+    } else {
+        res.status(404).json({ "mensaje": "no se realizo" })
+
+    }
+})
 app.listen(process.env.PORT, () => {
     console.log(process.env.PORT)
 })
