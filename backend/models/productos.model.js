@@ -34,6 +34,6 @@ const schemaPedidos =  new conexion.Schema({
     },
 });
 
-const pedidosModel = conexion.model('pedidos', schemaPedidos);
+const pedidosModel = conexion.model('productos', schemaPedidos);
 
 module.exports = pedidosModel;

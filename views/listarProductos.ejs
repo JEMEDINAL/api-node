@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <%- include('./partials/head'); %>
+</head>
+
+<body class="container">
+    <table id="productos">
+        <thead>
+            <th>Referencia</th>
+            <th>Productos</th>
+            <th>Precio</th>
+            <th>Descripcion</th>
+            <th>Imagenes</th>
+            <th>acciones</th>
+        </thead>
+        <tbody>
+            <% consulta.forEach(producto=> { %>
+                <tr>
+                    <td>
+                        <%= producto.referencia %>
+                    </td>
+                    <td>
+                        <%= producto.nombre %>
+                    </td>
+                    <td>
+                        <%= producto.precio %>
+                    </td>
+                    <td>
+                        <%= producto.descripcion %>
+                    </td>
+                    
+                    <td>
+                        <%= producto.imagen %>
+                    </td>
+                    <td>
+                        <button data-bs-toggle="modal" data-bs-target="#editModal" onclick=""><i
+                                class="bi bi-pencil-square"></i></button>
+                        <button class="btn btn-outline-danger" onclick=""><i class="bi bi-trash"></i></button>
+
+                    </td>
+                </tr>
+
+                <%})%>
+        </tbody>
+    </table>
+    <%- include('./partials/footer'); %>
+        <script>
+            new DataTable("#productos")
+        </script>
+</body>

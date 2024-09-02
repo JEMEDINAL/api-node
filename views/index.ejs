@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+
+            <html lang="en">
+            <head>
+                <%- include('./partials/head'); %>
+            </head>
+            <body class="container">
+            <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+      			<div class="container-fluid">
+            <a class="navbar-brand" href="#">Logo</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#collapsibleNavbar">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavbar">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">Link</a>
+                  </li>  
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Dropdown</a>
+                    <ul class="dropdown-menu">
+                      <li><a class="dropdown-item" href="#">Link</a></li>
+                      <li><a class="dropdown-item" href="#">Another link</a></li>
+                      <li><a class="dropdown-item" href="#">A third link</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </div>
+            <form class="d-flex">
+              <input class="form-control me-2" type="text" placeholder="Search">
+              <button class="btn btn-primary" type="button">Search</button>
+            </form>
+          </div>
+        </div>
+      </nav>
+           <main>
+                <div class="jumbotron">
+                    <h1>This is great</h1>
+                    <p>Welcome to templating using EJS</p>
+                </div>
+                <table  class="table table-striped" style="width:100%" id="productos">
+            <thead>
+                <tr>
+                    <th>referencia</th>
+                    <th>nombre</th>
+                    <th>descripcion</th>
+                    <th>precion</th>
+                    <th>stock</th>
+                    <th>imagen</th>
+                </tr>
+            </thead>
+            <tbody>
+               
+                <tr>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </tr>
+                
+                 </tbody>
+            
+
+            </main>
+
+            <footer>
+                <%- include('./partials/footer'); %>
+            </footer>
+                
+            </body>
+            </html>
+
