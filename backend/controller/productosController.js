@@ -11,8 +11,14 @@ exports.getProductos = async (req,res) =>{
 }
 
 exports.getProducto = async (req,res) =>{
-    let consulta = await productos.findOne({ referencia: req.params.id })
-    res.render("detalleProducto",{consulta:consulta})
+    let consulta = await productos.findOne({ _id: req.params.id })
+    if (consulta) {
+        res.status(200).json(consulta)
+    } else {
+        res.status(404).json({ "mensaje": "no existe" })
+
+    }
+    
 }
 
 exports.nuevoProducto = async (req,res) =>{
