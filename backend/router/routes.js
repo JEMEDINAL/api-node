@@ -10,6 +10,7 @@ module.exports = function(){
     // Productos
   
     router.get("/productos/:id",productosController.getProducto)
+    router.get("/admin",productosController.admin)
     router.post("/productos",productosController.nuevoProducto)
     router.put("productos/:id",productosController.editarProducto)
     router.delete("productos/:id",productosController.eliminarProducto)

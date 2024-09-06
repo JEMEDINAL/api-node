@@ -6,7 +6,10 @@ exports.getHome = async (req,res) => {
     res.render("index", {consulta:consulta})
 }
 
-
+exports.admin = async (req,res) => {
+    let allProducts = await productos.find({})
+    res.render('listarProductos',{consulta:allProducts})
+}
 
 exports.getProducto = async (req,res) =>{
     let consulta = await productos.findOne({ _id: req.params.id })
