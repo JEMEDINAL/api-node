@@ -1,14 +1,12 @@
 const productos = require("../models/productos.model")
 
 
-exports.getHome =  (req,res) => {
-    res.render("index")
+exports.getHome = async (req,res) => {
+    const consulta = await productos.find({})
+    res.render("index", {consulta:consulta})
 }
 
-exports.getProductos = async (req,res) =>{
-    const consulta = await productos.find({})
-    res.render("listarProductos", {consulta:consulta})
-}
+
 
 exports.getProducto = async (req,res) =>{
     let consulta = await productos.findOne({ _id: req.params.id })

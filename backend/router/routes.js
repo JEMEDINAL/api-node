@@ -8,7 +8,7 @@ module.exports = function(){
     router.get("/index", productosController.getHome)
 
     // Productos
-    router.get("/productos",productosController.getProductos)
+  
     router.get("/productos/:id",productosController.getProducto)
     router.post("/productos",productosController.nuevoProducto)
     router.put("productos/:id",productosController.editarProducto)

@@ -1,47 +1,59 @@
-
-let botonProducto = document.querySelector(".addCarrito")
 var carrito = []
 
-botonProducto.addEventListener("click", e => {
-    if (e.target.classList.contains('addCarrito')) {
+if(localStorage.getItem("carrito")){
+    carrito = JSON.parse(localStorage.getItem('carrito'))
+}
 
-        const idProducto = document.querySelector("#idProducto").value
-        const url = `${location.origin}/productos/${idProducto}`
-
-        axios.get(url)
-            .then(response => {
-                agregarCarrito(response.data)
-
-                console.log(carrito);
-            })
-            .catch(error => {
-                console.error('Error al hacer la solicitud:', error);
-            });
-
-    }
-
-})
-
-function agregarCarrito(producto) {
-    if(carrito.length == 0){
-        console.log("Agregamos un producto .");
-        carrito.push(producto)
-    }else if (carrito.length > 1){
-        for (let i = 0; i < carrito.length; i++) {
-            if (response.data._id === carrito[i]._id) {
-                console.log("ya lo tienes en el carrito una unidad mas para el mismo producto")
-                break
-            }else{
-                carrito.push(response.data)
-                break
+function addCarrito(idProducto) {
+    let url = `${location.origin}/productos/${idProducto}`
+    axios.get(url)
+        .then(response => {
+            let found = false
+                for (let i = 0; i < carrito.length; i++) {
+                    if (response.data._id === carrito[i]._id) {
+                        carrito[i].cantidad += 1;
+                        found = true;
+                        break
+                    }
+                }
+            
+        
+            if(!found){
+                console.log("nuevo producto no esta en el carrito");
+                let nuevoProducto = response.data
+                nuevoProducto.cantidad = 1;
+                carrito.push(nuevoProducto)
             }
-        }
-    }
-    
-   
+            localStorage.setItem("carrito",JSON.stringify(carrito))
+          
+        })
+
+
+
+
 }
 
 
 
+function mostrarCarrito() {
+    let carritoLocalStorage = JSON.parse(localStorage.getItem("carrito"))
+    let bodyOffCanva = document.querySelector(".offcanvas-body")
+    console.log(carritoLocalStorage.length)
+    
+    let tituloCarrito = document.querySelector(".textos")
+    
 
+    if(carritoLocalStorage.length >= 1){
+        tituloCarrito.textContent = "Lista productos"
+        let carritoHtml = ''
+        carritoLocalStorage.forEach(producto=> {
+           carritoHtml += ` <div class="carritoP">
+            <img src="${producto.imagen}" class="imgProducto">
+            <input type="number" style="width: 50px;">
+            <p><strong>$</strong>${producto.precio}</p>
+        </div>`
+        }) 
+        bodyOffCanva.textContent = carritoHtml
+    }
 
+}
