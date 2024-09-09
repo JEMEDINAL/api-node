@@ -31,6 +31,7 @@ module.exports = function(){
     router.delete("/cliente/:id",clienteController.eliminarCliente)
 
     router.get("/checkout", productosController.checkoutCarrito)
+    router.post("/create-payment-intent",productosController.create_payment_intent)
 
     return router
 }
