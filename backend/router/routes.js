@@ -8,7 +8,7 @@ module.exports = function(){
     router.get("/index", productosController.getHome)
 
     // Productos
-  
+
     router.get("/productos/:id",productosController.getProducto)
     router.get("/admin",productosController.admin)
     router.post("/productos",productosController.nuevoProducto)
@@ -29,6 +29,8 @@ module.exports = function(){
     router.get("/cliente/:id",clienteController.unCliente)
     router.put("/cliente/:id",clienteController.actualizarCliente)
     router.delete("/cliente/:id",clienteController.eliminarCliente)
+
+    router.get("/checkout", productosController.checkoutCarrito)
 
     return router
 }
