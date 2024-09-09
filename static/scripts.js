@@ -67,6 +67,7 @@ function mostrarCarrito() {
 
 function reiniciarCarrito() {
     localStorage.removeItem("carrito");
+    carrito = []
     mostrarCarrito();
 }
 
