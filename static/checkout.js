@@ -1,9 +1,10 @@
 
+
 // This is your test publishable API key.
-const stripe = Stripe("pk_test_51PvHSU05VZnGVecoQaGmNUzri0mBQNztPQqdLMUZkW12V6i9vrdppA592Muk8Z3UKH5mj7OpoKxgP5ox1SrMFU6m00RoZ3a16H");
+const stripe = Stripe("pk_test_51Px5fRRtPXmhCgawnJtBHOWgWCJOnsg0HabSalXdM8okFQBIbsWiDzx2OVu8KMolHmxrCBZCZdHi6eJCNsLYgUOx00lXcbifRm");
 
 // The items the customer wants to buy
-const items = JSON.parse(localStorage.getItem('productos'));
+const items = JSON.parse(localStorage.getItem('carrito'));
 
 let elements;
 
@@ -46,7 +47,7 @@ async function handleSubmit(e) {
     elements,
     confirmParams: {
       // Make sure to change this to your payment completion page
-      return_url: borrarCarrito(),
+      return_url:reiniciarCarrito(),
     },
   });
   // localStorage.removeItem('productos');

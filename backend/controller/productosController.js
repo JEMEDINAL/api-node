@@ -78,15 +78,6 @@ exports.checkoutCarrito = (req,res) =>{
 }
 
 
-const calculateOrderAmount = (items) => {
-    // Calculate the order total on the server to prevent
-    // people from directly manipulating the amount on the client
-    let total = 0;
-    items.forEach((item) => {
-      total += (item.precio * item.cantidad);
-    });
-    return total;
-  };
   
   exports.create_payment_intent = async (req, res) => {
     const { items } = req.body;
@@ -106,5 +97,17 @@ const calculateOrderAmount = (items) => {
       // [DEV]: For demo purposes only, you should avoid exposing the PaymentIntent ID in the client-side code.
       dpmCheckerLink: `https://dashboard.stripe.com/settings/payment_methods/review?transaction_id=${paymentIntent.id}`,
     });
+  };
+
+
+
+  const calculateOrderAmount = (items) => {
+    // Calculate the order total on the server to prevent
+    // people from directly manipulating the amount on the client
+    let total = 0;
+    items.forEach((item) => {
+      total += (item.precio * item.cantidad);
+    });
+    return total;
   };
   

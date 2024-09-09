@@ -75,7 +75,7 @@
       <button type="button" class="btn-close text-reset" data-bs-dismiss="offcanvas" aria-label="Close"></button>
     </div>
     <button class="btn btn-danger" onclick="reiniciarCarrito()">Vaciar Carrito</button>
-    <button class="btn btn-danger" onclick="pagar()">Pagar</button>
+    <button class="btn btn-success" onclick="pagar()">Pagar</button>
     <div class="offcanvas-body">
       
     </div>
@@ -87,6 +87,11 @@
 
 
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script>
+    function pagar() {
+		  location.href = '/checkout';
+	}
+  </script>
   <footer>
     <%- include('./partials/footer'); %>
   </footer>
